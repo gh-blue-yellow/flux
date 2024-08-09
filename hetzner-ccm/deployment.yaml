@@ -20,9 +20,12 @@ spec:
     spec:
       containers:
         - name: hcloud-cloud-controller-manager
-          image: hetznercloud/hcloud-cloud-controller-manager:v1.10.1
+          image: hetznercloud/hcloud-cloud-controller-manager:v1.20.0
           args:
             - --cloud-provider=hetzner
           env:
             - name: HCLOUD_TOKEN
-              value: "<your-hcloud-token>"
+              valueFrom:
+                secretKeyRef:
+                  name: hcloud-token
+                  key: HCLOUD_TOKEN
