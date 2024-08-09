@@ -32,6 +32,8 @@ spec:
                 secretKeyRef:
                   name: hcloud-token
                   key: HCLOUD_TOKEN
+            - name: HCLOUD_CLOUD_INIT
+              value: "https://github.com/gh-blue-yellow/flux/cloud-init.yaml"
           resources:
             limits:
               cpu: 100m
