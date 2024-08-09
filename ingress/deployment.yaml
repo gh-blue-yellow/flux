@@ -109,6 +109,7 @@ rules:
       - list
       - watch
   - apiGroups:
+      - "extensions"
       - "networking.k8s.io"
     resources:
       - ingresses
@@ -119,20 +120,20 @@ rules:
       - watch
       - update
   - apiGroups:
-      - "extensions"
-    resources:
-      - ingresses
-    verbs:
-      - create
-      - patch
-  - apiGroups:
       - ""
     resources:
       - events
     verbs:
       - create
       - patch
-
+  - apiGroups:
+      - "extensions"
+      - "networking.k8s.io"
+    resources:
+      - ingresses
+    verbs:
+      - create
+      - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
