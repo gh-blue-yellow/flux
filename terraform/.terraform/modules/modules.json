@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"k8s_master","Source":"./modules/hetzner-k8s-master","Dir":"modules/hetzner-k8s-master"}]}
