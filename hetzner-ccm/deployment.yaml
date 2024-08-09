@@ -69,8 +69,8 @@ spec:
             - name: HCLOUD_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: token
-                  name: hcloud
+                  name: hcloud-token
+                  key: HCLOUD_TOKEN
             - name: ROBOT_PASSWORD
               valueFrom:
                 secretKeyRef:
