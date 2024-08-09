@@ -3,6 +3,15 @@ kind: Namespace
 metadata:
   name: hetzner-cloud
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hcloud-token
+  namespace: hetzner-cloud
+type: Opaque
+data:
+  HCLOUD_TOKEN: SkNoR0x0NHd4OFF0ckpKdVBGSnJndDNNbHRoZXc1ekpSRkhETTdCaThWa2tYMGhsUnEzN2JUOGlROG1Zb2o5eA==
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
