@@ -20,7 +20,7 @@ spec:
           command:
             - ./cluster-autoscaler
             - --cloud-provider=hetzner
-            - --nodes=1:10:<node-group-name>
+            - --nodes=1:10:cx22:nbg1:general-purpose-nodes
             - --scale-down-unneeded-time=10m
             - --scale-down-delay-after-add=10m
             - --scale-down-unready-time=20m
