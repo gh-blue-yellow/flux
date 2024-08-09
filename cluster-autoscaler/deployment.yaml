@@ -13,12 +13,7 @@ spec:
       labels:
         app: cluster-autoscaler
     spec:
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          effect: "NoSchedule"
-        - key: "node.kubernetes.io/not-ready"
-          operator: "Exists"
-          effect: "NoExecute"
+      serviceAccountName: cluster-autoscaler
       containers:
         - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.28.0
           name: cluster-autoscaler
@@ -31,7 +26,6 @@ spec:
             - --scale-down-unready-time=20m
             - --skip-nodes-with-system-pods=false
             - --skip-nodes-with-local-storage=false
-            - --balance-similar-node-groups
           env:
             - name: HCLOUD_TOKEN
               valueFrom:
