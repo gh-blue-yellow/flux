@@ -13,16 +13,31 @@ spec:
       labels:
         app: cluster-autoscaler
     spec:
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          effect: "NoSchedule"
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
       containers:
-        - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.22.0
+        - image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.28.0
           name: cluster-autoscaler
           command:
             - ./cluster-autoscaler
             - --cloud-provider=hetzner
             - --nodes=1:10:<node-group-name>
+            - --scale-down-unneeded-time=10m
+            - --scale-down-delay-after-add=10m
+            - --scale-down-unready-time=20m
+            - --skip-nodes-with-system-pods=false
+            - --skip-nodes-with-local-storage=false
+            - --balance-similar-node-groups
           env:
-            - name: AWS_REGION
-              value: <your-region>
+            - name: HCLOUD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hcloud-token
+                  key: HCLOUD_TOKEN
           resources:
             limits:
               cpu: 100m
